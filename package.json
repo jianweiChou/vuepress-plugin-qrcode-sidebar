@@ -1,0 +1,22 @@
+{
+  "name": "vuepress-plugin-qrcode-sidebar",
+  "version": "1.0.0",
+  "description": "The sidebar of the Vuepress plugin, you can place WeChat QR codes and other QR codes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jianweiChou/vuepress-plugin-side-bar.git"
+  },
+  "keywords": [
+    "vuepress-pugins-side-bar"
+  ],
+  "author": "alunOtway",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jianweiChou/vuepress-plugin-side-bar/issues"
+  },
+  "homepage": "https://github.com/jianweiChou/vuepress-plugin-side-bar#readme"
+}
