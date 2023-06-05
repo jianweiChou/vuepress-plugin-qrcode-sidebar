@@ -1,6 +1,6 @@
 {
   "name": "vuepress-plugin-qrcode-sidebar",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "The sidebar of the Vuepress plugin, you can place WeChat QR codes and other QR codes.",
   "main": "index.js",
   "scripts": {

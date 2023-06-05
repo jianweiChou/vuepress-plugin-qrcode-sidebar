@@ -94,7 +94,7 @@ export default {
     let title = null;
     const keys = Object.keys(this.config);
     keys.forEach((key) => {
-      if (key == "wecaht") {
+      if (key == "wechat") {
         icon = require("./assets/icon/微信.svg");
         title = "微信";
       } else if (key == "qq") {
