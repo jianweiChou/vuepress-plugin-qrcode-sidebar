@@ -1,45 +1,43 @@
 <template>
-  <div class="sidebar-wechat">
-    <div class="izl-rmenu">
+  <div class="sidebar-layout">
+    <div
+      class="item-layout"
+      v-for="(item, key) in itemsModel"
+      :key="key"
+      v-show="item.isHide == false || item.isHide == undefined"
+    >
+      <img
+        class="item-img"
+        :src="item.iconItem.iconUrl"
+        :data-name="key"
+        @mouseenter="mouseenterHandle"
+        @mouseout="mouseOutHandle"
+      />
+      <span class="item-title">{{ item.iconItem.title }}</span>
       <div
-        class="item-layout"
-        v-for="(item, key) in itemsModel"
-        :key="key"
-        v-show="item.isHide == false || item.isHide == undefined"
+        :ref="'hoverItem' + '_' + key"
+        class="qr-code-dialog"
+        v-show="item.dialogVisible"
       >
-        <img
-          class="item-img"
-          :src="item.iconItem.iconUrl"
-          :data-name="key"
-          @mouseenter="mouseenterHandle"
-          @mouseout="mouseOutHandle"
-        />
-        <span class="item-title">{{ item.iconItem.title }}</span>
         <div
-          :ref="'hoverItem' + '_' + key"
-          class="qr-code-dialog"
-          v-show="item.dialogVisible"
+          class="qr-code-dialog-item"
+          v-for="qrItem in item.hoverItems"
+          :key="qrItem.title"
         >
-          <div
-            class="qr-code-dialog-item"
-            v-for="qrItem in item.hoverItems"
-            :key="qrItem.title"
-          >
-            <img v-if="qrItem.imgUrl" :src="qrItem.imgUrl" />
-            <div v-if="qrItem.content">
-              <a :href="qrItem.content" v-if="qrItem.isTagA == true">
-                {{ qrItem.content }}
-              </a>
-              <span v-else>
-                {{ qrItem.content }}
-              </span>
-            </div>
-            <span>{{ qrItem.title }}</span>
+          <img v-if="qrItem.imgUrl" :src="qrItem.imgUrl" />
+          <div v-if="qrItem.content">
+            <a :href="qrItem.content" v-if="qrItem.isTagA == true">
+              {{ qrItem.content }}
+            </a>
+            <span v-else>
+              {{ qrItem.content }}
+            </span>
           </div>
+          <span>{{ qrItem.title }}</span>
         </div>
       </div>
-      <a class="btn_top" @click="backToTopHandle" style="display: none"></a>
     </div>
+    <a class="btn_top" @click="backToTopHandle" style="display: none"></a>
   </div>
 </template>
   
@@ -96,7 +94,7 @@ export default {
     let title = null;
     const keys = Object.keys(this.config);
     keys.forEach((key) => {
-      if (key == "weixin") {
+      if (key == "wecaht") {
         icon = require("./assets/icon/微信.svg");
         title = "微信";
       } else if (key == "qq") {
@@ -128,11 +126,11 @@ export default {
             },
           ],
           isHide: (target && target.isHide) || false,
-          dialogVisible: false
-        }
+          dialogVisible: false,
+        },
       });
     });
-    console.log('last-config:',this.itemsModel);
+    console.log("last-config:", this.itemsModel);
   },
 };
 </script>
@@ -188,7 +186,7 @@ export default {
   font-size: 12px;
 }
 
-.izl-rmenu {
+.sidebar-layout {
   margin-right: 0;
   width: 82px;
   position: fixed;
@@ -199,28 +197,7 @@ export default {
   box-shadow: #ddd 0px 1px 5px;
   z-index: 999;
 }
-
-.izl-rmenu .consult .phone {
-  background-color: rgb(247, 247, 255);
-  position: absolute;
-  width: 160px;
-  left: -160px;
-  top: 0px;
-  line-height: 73px;
-  color: #000;
-  font-size: 18px;
-  text-align: center;
-  display: none;
-  box-shadow: #ddd -1px 1px 4px;
-}
-.izl-rmenu a.consult:hover .phone {
-  display: inline !important;
-}
-
-.izl-rmenu a.cart:hover .pic {
-  display: block;
-}
-.izl-rmenu .btn_top {
+.sidebar-layout .btn_top {
   background-image: url(./assets/icon/float_top.gif);
   background-repeat: no-repeat;
   background-position: center top;
@@ -232,7 +209,7 @@ export default {
   -o-transition: all 0s ease-in-out;
   transition: all 0s ease-in-out;
 }
-.izl-rmenu .btn_top:hover {
+.sidebar-layout .btn_top:hover {
   background-image: url(./assets/icon/float_top.gif);
   background-repeat: no-repeat;
   background-position: center bottom;
